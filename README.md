@@ -1,2 +1,294 @@
-# Linux-System-Homework
-How to Change Umask Value Permanently in Linux OS
+import React from 'react';
+
+export default function UmaskTutorialPDF() {
+  return (
+    <div className="min-h-screen bg-white p-12">
+      <div className="max-w-4xl mx-auto">
+        
+        {/* Header */}
+        <div className="text-center border-b-4 border-gray-800 pb-6 mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">Linux System Homework</h1>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+            How to Change Umask Value Permanently in Linux OS
+          </h2>
+          <div className="mt-6 text-sm text-gray-700">
+            <p><strong>Student Name:</strong> Adem Sakeur | <strong>Group:</strong> Four (04)</p>
+          </div>
+        </div>
+
+        {/* Introduction */}
+        <section className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">Introduction</h3>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            The <strong>umask</strong> (user file creation mask) is a command and a function in Linux that determines the 
+            default permission settings for newly created files and directories. This tutorial will guide you 
+            through changing the umask value permanently.
+          </p>
+          
+          <div className="bg-gray-100 p-5 rounded-lg border border-gray-300">
+            <h4 className="font-bold text-gray-800 mb-2">Learning Objectives:</h4>
+            <ul className="list-disc list-inside space-y-1 text-gray-700">
+              <li>Understanding and becoming a root user</li>
+              <li>Using command-line text editors (nano)</li>
+              <li>Permanently configuring umask values</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Section 1: Understanding Umask */}
+        <section className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
+            1. Understanding Umask
+          </h3>
+          
+          <h4 className="text-xl font-semibold text-gray-800 mb-3">What is Umask?</h4>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Umask is a 4-digit octal number that specifies which permissions should be removed from the 
+            default permissions when creating new files or directories.
+          </p>
+
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h5 className="font-bold text-gray-800 mb-2">Default Permissions:</h5>
+            <ul className="space-y-1 text-gray-700">
+              <li>• Files: 666 (rw-rw-rw-)</li>
+              <li>• Directories: 777 (rwxrwxrwx)</li>
+            </ul>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-400 p-4 rounded">
+            <p className="font-semibold text-gray-800">
+              Common Umask Value in most distribution (when become a root) is: <span className="font-mono text-lg">0022</span>
+            </p>
+          </div>
+        </section>
+
+        {/* Section 2: Problem 1 - Root User */}
+        <section className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
+            2. Problem 1: How to Become a Root User
+          </h3>
+
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">Method 1: Using sudo (Recommended)</h4>
+            <p className="text-gray-700 mb-3">
+              The <span className="font-mono bg-gray-100 px-2 py-1 rounded">sudo</span> command allows you to run 
+              commands with root privileges while remaining logged in as your regular user.
+            </p>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono mb-2">
+              $ sudo command_name
+            </div>
+            <p className="text-sm text-gray-600 italic">Example: sudo apt update</p>
+          </div>
+
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">Method 2: Switching to Root User (su)</h4>
+            <p className="text-gray-700 mb-3">Switch to root user account directly:</p>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono">
+              $ su -<br/>
+              Password: <br/>
+              #
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">Method 3: Interactive Root Shell</h4>
+            <p className="text-gray-700 mb-3">Start an interactive root shell session:</p>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono">
+              $ sudo -i<br/>
+              [sudo] password for username: <br/>
+              #
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3: Problem 2 - Text Editors */}
+        <section className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
+            3. Problem 2: Command-Line Text Editors : Nano Editor (Easiest for Beginners)
+          </h3>
+
+          <p className="text-gray-700 mb-4">Nano is user-friendly with on-screen commands.</p>
+
+          <div className="mb-4">
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">Opening a file:</h4>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono">
+              $ nano filename
+            </div>
+          </div>
+
+          <div className="bg-gray-100 p-5 rounded border border-gray-300">
+            <h4 className="font-bold text-gray-800 mb-3">Basic Commands:</h4>
+            <ul className="space-y-2 text-gray-700">
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + O</kbd> → Save file (Write Out)</li>
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + X</kbd> → Exit nano</li>
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + K</kbd> → Cut line</li>
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + U</kbd> → Paste line</li>
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + W</kbd> → Search text</li>
+              <li>• <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + G</kbd> → Help menu</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Section 4: How to Change Umask Permanently */}
+        <section className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
+            4. How to Change Umask Permanently
+          </h3>
+
+          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
+            <p className="text-gray-700 leading-relaxed">
+              We need to edit a special file that runs every time you open the terminal. This file will set your 
+              umask automatically! The file is called <strong>".bashrc"</strong>
+            </p>
+          </div>
+
+          {/* Step 4.1 */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">4.1 Check The Current Umask</h4>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono">
+              $ umask<br/>
+              0022
+            </div>
+          </div>
+
+          {/* Step 4.2 */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">4.2 Open .bashrc with Nano</h4>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono mb-3">
+              $ nano ~/.bashrc
+            </div>
+            <p className="text-gray-600 text-sm mb-3">we see this:</p>
+            <div className="bg-gray-100 border border-gray-300 p-4 rounded font-mono text-sm">
+              <pre className="text-gray-700">{`# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space
+HISTCONTROL=ignoreboth
+
+...
+(more content)
+...`}</pre>
+            </div>
+          </div>
+
+          {/* Step 4.3 */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">4.3 Add the Umask Line</h4>
+            <p className="text-gray-700 mb-3">Scroll to the VERY BOTTOM of the file and add these lines:</p>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono mb-3">
+              # My custom umask setting<br/>
+              umask 0022
+            </div>
+            <p className="text-gray-600 text-sm mb-3">be like this:</p>
+            <div className="bg-gray-100 border border-gray-300 p-4 rounded font-mono text-sm">
+              <pre className="text-gray-700">{`...
+(previous content)
+...
+
+# My custom umask setting
+umask 0022`}</pre>
+            </div>
+          </div>
+
+          {/* Save and Exit */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">Save and Exit Nano</h4>
+            <div className="bg-gray-100 p-4 rounded border border-gray-300">
+              <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                <li>Press <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + O</kbd> (Write Out / Save)</li>
+                <li>Press <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Enter</kbd> to confirm filename</li>
+                <li>Press <kbd className="bg-gray-700 text-white px-2 py-1 rounded text-sm">Ctrl + X</kbd> to exit nano</li>
+              </ol>
+            </div>
+          </div>
+
+          {/* Step 4.4 */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">4.4 Apply the Changes</h4>
+            <p className="text-gray-700 mb-3">Tell the terminal to reload the .bashrc file:</p>
+            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono">
+              $ source ~/.bashrc
+            </div>
+            <p className="text-sm text-gray-600 mt-2 italic">
+              Or you can close the terminal and open a new one
+            </p>
+          </div>
+
+          {/* Step 4.5 */}
+          <div className="mb-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">4.5 Test It!</h4>
+            
+            <div className="mb-4">
+              <h5 className="font-semibold text-gray-800 mb-2">Test 1: Create a file</h5>
+              <div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
+                $ touch testfile.txt<br/>
+                $ ls -l testfile.txt<br/>
+                -rw-r--r-- 1 user group 0 Dec 19 10:30 testfile.txt
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <h5 className="font-semibold text-gray-800 mb-2">Test 2: Create a directory</h5>
+              <div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
+                $ mkdir testdir<br/>
+                $ ls -ld testdir<br/>
+                drwxr-xr-x 2 user group 4096 Dec 19 10:30 testdir
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <h5 className="font-semibold text-gray-800 mb-2">Test 3: Restart terminal</h5>
+              <p className="text-gray-700 mb-2">
+                Close and reopen your terminal, then check umask to ensure it persists:
+              </p>
+              <div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
+                $ umask<br/>
+                0022
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Summary */}
+        <section className="mb-8">
+          <div className="bg-green-50 border-2 border-green-500 p-6 rounded-lg">
+            <h3 className="text-xl font-bold text-green-800 mb-3">Summary</h3>
+            <p className="text-gray-700 mb-3">You have successfully learned:</p>
+            <ul className="list-disc list-inside space-y-1 text-gray-700">
+              <li>How to become a root user using sudo, su, or sudo -i</li>
+              <li>How to use nano text editor for file editing</li>
+              <li>How to permanently change umask by editing ~/.bashrc file</li>
+              <li>How to apply and test the umask changes</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Tools Used */}
+        <section className="mb-8">
+          <div className="bg-gray-50 border-2 border-gray-300 p-6 rounded-lg">
+            <h3 className="text-xl font-bold text-gray-800 mb-3">Tools Used in This Tutorial</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>• <strong>Claude:</strong> For help with commands and formatting the tutorial</li>
+              <li>• <strong>https://carbon.now.sh/:</strong> For terminal design and screenshots</li>
+              <li>• <strong>LibreOffice:</strong> For writing and formatting</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <div className="border-t-2 border-gray-400 pt-6 mt-8 text-center">
+          <p className="text-gray-600 text-sm">Linux System Administration</p>
+          <p className="text-gray-600 text-sm">Umask Configuration Tutorial</p>
+          <p className="text-gray-500 text-xs mt-2">Due: Sunday 21 December 2025, 00:00</p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
